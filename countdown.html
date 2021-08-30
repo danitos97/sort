@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximamente</title>
+    <link rel="shortcut icon" href="icon.png" type="image/png">
+</head>
+
+<style>
+    *{
+        margin:0;
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        color:white;
+    }
+    main{
+        display: grid;
+        place-items: center;
+        background-color: rgb(63, 91, 119);
+        height: 100vh;
+    }
+    section > div{
+        display: inline-block;
+        cursor:default;
+    }
+    section .bloque{ 
+        text-align: center;
+        padding: 0;
+    }
+    section .bloque:first-child{
+        margin-right: 60px;
+    }
+    section .dot{
+        font-weight: bold;
+        font-size: 60px;
+        vertical-align: top;
+        padding-top: 0px;
+    }
+    section > div > div{
+        font-weight: bold;
+        font-size: 60px;
+    }
+    section span{
+        font-weight: bold;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <main>
+        <section>
+            <div class="bloque">
+                <div id="dias">3</div>
+                <span> Dias </span>
+            </div>
+            
+            <div class="bloque">
+                <div id="horas">03</div>
+                <span> Horas</span>
+            </div>
+
+            <div class="dot">:</div>
+
+            <div class="bloque">
+                <div id="min">03</div>
+                <span> Minutos</span>
+            </div>
+
+            <div class="dot">:</div>
+
+            <div class="bloque">
+                <div id="seg">03</div>
+                <span>Segundos</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const divDias= document.getElementById("dias"),
+            divHoras = document.getElementById("horas"),
+            divMin   = document.getElementById("min"),
+            divSeg   = document.getElementById("seg");
+        
+        const fechaMeta = "Apr 4, 2021 18:00",
+            meta  = Math.floor(Date.parse(new Date(fechaMeta)) / 1000),
+            actual = Math.floor(Date.parse(new Date())/ 1000);
+
+        actualizar(actual);
+
+        function actualizar(actual){    
+            const seg = meta - actual, 
+                min   = Math.floor(seg / 60),
+                horas = Math.floor(min / 60),
+                dias  = Math.floor(horas / 24);
+            divDias.innerHTML = dias;
+            divHoras.innerHTML= ("0" + (horas%24)).slice(-2);
+            divMin.innerHTML  = ("0" + (min % 60)).slice(-2);
+            divSeg.innerHTML  = ("0" + (seg % 60)).slice(-2);
+            setTimeout(function(){actualizar(actual + 1)},1000);
+        }
+    </script>
+</body>
+
+</html>

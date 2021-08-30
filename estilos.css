@@ -1,0 +1,287 @@
+*{
+    box-sizing: border-box;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+body{
+    background: #272727;
+}
+html, body{
+  overflow-x: hidden;
+}
+main{
+    width: 100%;
+    height: 450px;
+    background: black;
+    position: relative;
+}
+main #main-content{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 25px;
+}
+main #main-content > div{
+    display: inline-block;
+    vertical-align: bottom;
+    background-color: #eee;
+}
+main #main-content.pocos > div{
+    border: 0 solid black;
+    border-right-width: 1px;
+   
+}
+/* main #main-content > div:hover{
+    background: blue !important;
+} */
+section{
+    width: 100%;
+   
+    padding: 15px;
+    text-align: center;
+}
+section label{
+    color:white;
+    font-size: 20px;
+    
+}
+section > div{
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.botones{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 1em;
+}
+
+.botones > div{
+  color:rgb(55, 54, 54);
+  cursor: pointer;
+  padding: 20px 0;
+  font-weight: bold;
+  box-shadow: 5px 5px 8px 5px rgba(0, 0, 0, 0.433);
+}
+.botones > div:hover{
+  color:black;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.433);
+}
+
+
+
+#divStop{
+    display: none;
+    position: relative;
+    top:0;
+    
+    color: rgb(255, 99, 99);
+    font-size: 30px;
+    font-weight: 900;
+    background: rgb(22, 22, 22);
+    height: 120px;
+    width: 100%;
+    margin-bottom: -120px;
+    padding: 35px 0;
+    z-index: 300;
+
+}
+#divStop:hover{
+  color:red;
+  cursor: pointer;
+  background: rgb(20, 20, 20);
+
+}
+
+.fila{
+  width: 100%;
+  margin: 0 auto;
+}
+.fila >*{
+  float: left;
+  vertical-align: middle;
+}
+.div-label{
+  display: inline-block;
+  padding-top: 7px;
+}
+.div-label > *{
+  vertical-align: middle;
+  display: inline-block;
+}
+p{
+  color:white;
+  font-size: 26px;
+  font-weight: bold;
+  margin:0 10px;
+  width: 58px ;
+  text-align: center;
+}
+
+/*inputs*/
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: calc(100% - 180px);
+  float:right;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+input[type=range]::-webkit-slider-thumb::after {
+ content: "d";
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+ 
+   #main-content div {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; 
+  }
+  
+  /* Tooltip text */
+  main div span {
+    visibility: hidden;
+    width: 60px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -30px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  main div span::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  #main-content div:hover span {
+    visibility: visible;
+    opacity: 1;
+  }
+  #main-content div:hover{
+    background-color: #ccc !important;
+  }
+
+ 
+
+  #reset{
+    width: 80px;
+    border-radius: 15px;
+    background-color: #0005;
+    position: absolute;
+    top:270px;
+    left: calc(50vw - 40px);
+    cursor:pointer;
+    padding: 15px;
+    padding-bottom: 8px;
+    color:white;
+    text-align: center;
+  }
+  #reset:hover{
+    background-color: #0008;
+  }
+  @media screen and  (max-width: 600px){
+    main #main-content{
+        padding: 0 5px;
+    }
+  }
