@@ -13,7 +13,7 @@ html, body{
 }
 main{
     width: 100%;
-    height: 450px;
+    height: calc(40vh + 20px);
     background: black;
     position: relative;
 }
@@ -29,6 +29,7 @@ main #main-content > div{
     display: inline-block;
     vertical-align: bottom;
     background-color: #eee;
+    border-radius: 250px 250px 0 0;
 }
 main #main-content.pocos > div{
     border: 0 solid black;
@@ -56,21 +57,72 @@ section > div{
 
 .botones{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+  margin-top:50px;
 }
 
-.botones > div{
+button{
   color:rgb(55, 54, 54);
   cursor: pointer;
   padding: 20px 0;
   font-weight: bold;
-  box-shadow: 5px 5px 8px 5px rgba(0, 0, 0, 0.433);
+  font-size: 18px;
+  /* box-shadow: 5px 5px 8px 5px rgba(0, 0, 0, 0.433); */
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 5px solid;
+  border-radius: 250px;
+  --hover-saturation:0%;
+  --hover-lightness:0%;
+  color: hsl(var(--hue), calc(var(--saturation) + var(--hover-saturation)),calc( var(--lightness) + var(--hover-lightness)) );
+  border-color: hsl(var(--hue), calc(var(--saturation) + var(--hover-saturation)),calc( var(--lightness) + var(--hover-lightness)) );
+
 }
-.botones > div:hover{
+button:hover{
+    --hover-lightness:10%;
+    box-shadow: 0px 0px 10px 0px  hsl(var(--hue), calc(var(--saturation)),calc( var(--lightness)) ) inset,0px 0px 20px 0px  hsl(var(--hue), calc(var(--saturation)),calc( var(--lightness)) );
+}
+
+
+button.red{
+  --hue:0;
+  --saturation:80%;
+  --lightness:50%;
+}
+button.blue{
+  color: hsl(229, 100%, 57%);
+  --hue:229;
+  --saturation:100%;
+  --lightness:51%;
+}
+button.light-blue{
+
+  --hue:174;
+  --saturation:100%;
+  --lightness:42%;
+}
+button.orange{
+  --hue:39;
+  --saturation:100%;
+  --lightness:50%;
+}
+button.green{
+  --hue:84;
+  --saturation:100%;
+  --lightness:50%;
+}
+button.pink{
+  --hue:350;
+  --saturation:100%;
+  --lightness:78%;
+}
+/* .botones > div:hover{
   color:black;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.433);
-}
+} */
 
 
 
@@ -269,7 +321,7 @@ input[type=range]:focus::-ms-fill-upper {
     border-radius: 15px;
     background-color: #0005;
     position: absolute;
-    top:270px;
+    top:30vh;
     left: calc(50vw - 40px);
     cursor:pointer;
     padding: 15px;
@@ -283,5 +335,23 @@ input[type=range]:focus::-ms-fill-upper {
   @media screen and  (max-width: 600px){
     main #main-content{
         padding: 0 5px;
+    }
+    button{
+      font-size: 16px;
+    }
+    .botones{
+      margin-top:0;
+    }
+    p{
+      font-size:16px;
+      width: 30px;
+      margin-top:6px;margin-top:6px;
+    }
+    section  label{
+      font-size:16px;
+      margin-top:6px;
+    }
+    input[type=range] {
+      width: calc(100% - 140px);
     }
   }

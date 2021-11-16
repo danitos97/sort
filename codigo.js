@@ -3,19 +3,22 @@ const divStop  = document.getElementById("divStop"),
     selectAlg =  document.getElementById("algoritmos"),
     main =       document.getElementById("main-content"),
     divBotones = document.querySelector(".botones"),
-    btnsMetodos= document.querySelectorAll(".botones div"),
+    btnsMetodos= document.querySelectorAll(".botones button"),
     reset = document.getElementById("reset"),
     filaVel = document.getElementById("filaVel"),
-    minValue = 20, maxValue = 420;
+    minValue = 0, maxValue = 40;
     
 let n = 20,latencia = 30,status,quickPendientes;
 
 revolver();
 inicializar();
 
+ const height = $(window).height();
+ console.log(height)
+ 
 function revolver(){
     let i = 0;
-    elementos = Array.from({length: n},() => ((maxValue / n * ++i) + 20));
+    elementos = Array.from({length: n},() => ((maxValue / n * ++i) + 1));
     for(i = 0; i < n - 1; i++){
         const aux = elementos[i];
         const rand = getRand(i, n - 1);
@@ -28,13 +31,16 @@ function inicializar(){
     main.setAttribute("class",n<=200? 'pocos':'');
     texto = '';
     for(let i = 0; i < n; i++)
-        texto+=`<div style="height: ${elementos[i]}px;
+        texto+=`<div style="height: ${elementos[i]}vh;
              width: calc(100% / ${n}); max-width:50px;">
                 <span></span>
              </div>`;
     main.innerHTML = texto;
     $(main).children().hover(async function(){
-        const text = Math.round(($(this).height() -20) / (maxValue / n));
+        console.log((n / maxValue) * ($(this).height() * 100 / height))
+        console.log()
+        console.log('')
+        const text = Math.round((n / maxValue) * ($(this).height() * 100 / height - 1));
         //const text =Math.round($(this).height() * 100) / 100 ;
         $(this).children("span").html(text).show();
     });
@@ -213,7 +219,7 @@ async function shell(){
 
             }
             elementos[j + k] = aux;
-            setValue(j + k, aux+"px");
+            setValue(j + k, aux+"vh");
             if(j < 0) j += k;
             pintar(j,"blanco");
             pintar(j + k,"blanco");
@@ -299,21 +305,21 @@ async function getMergeAsync(i,k,mitad){
         if(!ultima) pintar(c,"blanco");
         if(c + mitad < n)pintar(c + mitad,"blanco");
         if(a == tamA){
-            setValue(c++,arregloB[b]+"px");
+            setValue(c++,arregloB[b]+"vh");
             arregloC.push(arregloB[b++]);
             continue;
         }
         if(b == tamB){
-            setValue(c++,arregloA[a]+"px");
+            setValue(c++,arregloA[a]+"vh");
             arregloC.push(arregloA[a++]);
             continue;
         }
         if(arregloA[a] <= arregloB[b]){
-            setValue(c++,arregloA[a]+"px");
+            setValue(c++,arregloA[a]+"vh");
             arregloC.push(arregloA[a++]);
         }
         else{
-            setValue(c++,arregloB[b]+"px");
+            setValue(c++,arregloB[b]+"vh");
             arregloC.push(arregloB[b++]);               
         }        
     }
@@ -344,21 +350,21 @@ async function merge(){
                 if(!ultima) pintar(c,"blanco");
                 if(c + mitad < n)pintar(c + mitad,"blanco");
                 if(a == tamA){
-                    setValue(c++,arregloB[b]+"px");
+                    setValue(c++,arregloB[b]+"vh");
                     arregloC.push(arregloB[b++]);
                     continue;
                 }
                 if(b == tamB){
-                    setValue(c++,arregloA[a]+"px");
+                    setValue(c++,arregloA[a]+"vh");
                     arregloC.push(arregloA[a++]);
                     continue;
                 }
                 if(arregloA[a] <= arregloB[b]){
-                    setValue(c++,arregloA[a]+"px");
+                    setValue(c++,arregloA[a]+"vh");
                     arregloC.push(arregloA[a++]);
                 }
                 else{
-                    setValue(c++,arregloB[b]+"px");
+                    setValue(c++,arregloB[b]+"vh");
                     arregloC.push(arregloB[b++]);               
                 }                
                 
@@ -541,16 +547,16 @@ reset.addEventListener("click",function(){
 });
 var nota1, nota2; 
 var Sonidos= [261,277,293,311,329,349,369,392,415,440,466,493];
-
+let notasActivas = 0;
 function Sonido(valor){
-    valor = elementos[valor];
+    if(notasActivas > 2 || latencia < 10) return;
+    valor = elementos[valor] * 10;
     //creamos oscilador
-    if(latencia < 10) return;
    const osc = nota1.createOscillator();
 
    gain = nota1.createGain();
 // establece el valor inicial del volumen
-gain.gain.value = .07;
+gain.gain.value = .05;
    // admite: sine, square, sawtooth, triangle
    osc.type = 'square'; 
 //    console.log("n: " + n);
@@ -566,8 +572,12 @@ gain.gain.value = .07;
    osc.connect(gain);
    gain.connect(nota1.destination);
    //iniciamos la valor
+ 
    osc.start();
+   ++notasActivas;
+   const stopNote =(latencia / 1000) - .001;
    //detenemos la valor medio segundo despues
-   osc.stop(nota1.currentTime + (latencia / 1000) - .001);
+   osc.stop(nota1.currentTime + stopNote);
+   setTimeout( () => --notasActivas, stopNote);
 //osc.stop(context.currentTime + .01);
 }
