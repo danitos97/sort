@@ -89,17 +89,15 @@ button:hover{
 
 button.red{
   --hue:0;
-  --saturation:80%;
-  --lightness:50%;
+  --saturation:100%;
+  --lightness:60%;
 }
 button.blue{
-  color: hsl(229, 100%, 57%);
   --hue:229;
   --saturation:100%;
-  --lightness:51%;
+  --lightness:60%;
 }
 button.light-blue{
-
   --hue:174;
   --saturation:100%;
   --lightness:42%;
