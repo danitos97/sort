@@ -14,7 +14,6 @@ revolver();
 inicializar();
 
  const height = $(window).height();
- console.log(height)
  
 function revolver(){
     let i = 0;
@@ -37,9 +36,6 @@ function inicializar(){
              </div>`;
     main.innerHTML = texto;
     $(main).children().hover(async function(){
-        console.log((n / maxValue) * ($(this).height() * 100 / height))
-        console.log()
-        console.log('')
         const text = Math.round((n / maxValue) * ($(this).height() * 100 / height - 1));
         //const text =Math.round($(this).height() * 100) / 100 ;
         $(this).children("span").html(text).show();
@@ -518,7 +514,6 @@ $("#inputN").on("change",function(){
     revolver();
     inicializar();
     reset.style.display ="none";
-    console.log("event");
 });
     
 $("#inputTime").on("change",function(){
