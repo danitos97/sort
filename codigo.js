@@ -551,7 +551,7 @@ function Sonido(valor){
 
    gain = nota1.createGain();
 // establece el valor inicial del volumen
-gain.gain.value = .05;
+gain.gain.value = .04;
    // admite: sine, square, sawtooth, triangle
    osc.type = 'square'; 
 //    console.log("n: " + n);
